@@ -5,17 +5,28 @@
     <meta charset="utf-8">
     <title>&lt;my-repo&gt;</title>
 
-    <!-- Imports polyfill -->
-    <script src="../webcomponentsjs/webcomponents.min.js"></script>
+    
+    <link rel="import" href="test1.html">
+    <!-- <link rel="import" href="test1_template.html"> -->
 
-    <!-- Imports custom element -->
-    <link rel="import" href="my-element.html">
 
 </head>
 <body>
-
-    <!-- Runs custom element -->
-    <my-element></my-element>
+	<template id="test1">
+	    <style>
+	      #button1 {
+	        color : purple;
+	      }
+	      #button2 {
+	        color : blue;
+	      }
+	    </style>
+	    <div id="container">
+	    	<button id="button1">button1</button>
+	    	<button id="button2">button2</button>
+	    </div>
+	</template>
+    <mo-wc-test1></mo-wc-test1>
 
 </body>
 </html>
