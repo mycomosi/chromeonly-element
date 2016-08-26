@@ -9,6 +9,25 @@ The idea was to test the very basic ways to interact with a web component
 - Pass "option" object to each instance containing
 	- static information to pass to render
 	- callback functions to be called on button click
+ 
+```html
+<body>
+    <mo-wc-test1 id='wc1'></mo-wc-test1>
+    
+    <script type='text/javascript'>
+    	var wc = document.querySelector('#wc1');
+    	wc.render(
+    		{
+    			name : 'hello web component 1',
+    			onButton1Clicked : function(){
+    				alert('wc1 button 1 clicked');
+    			}
+    		});
+    	//...
+    </script>
+</body>
+```
+
 
 ##Run the example
 
