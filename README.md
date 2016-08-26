@@ -27,7 +27,9 @@ The idea was to test the very basic ways to interact with a web component
     </script>
 </body>
 ```
+Will render like this
 
+![web component](./wc1.png)
 
 ##Run the example
 
