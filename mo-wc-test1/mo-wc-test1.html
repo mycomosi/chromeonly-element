@@ -1,4 +1,4 @@
-<link rel="import" href="mo-wc-test1_template.html">
+<link rel='import' href='mo-wc-test1_template.html'>
 
 <script>
 (function() {
@@ -7,9 +7,9 @@
     // document = index.html document
     // importedDoc = mo-wc-test1_template.html document
 
-
     // Creates an object based in the HTML Element prototype
     var element = Object.create(HTMLElement.prototype);
+    console.log('initialize element');
 
     //Retrieving the current document and not the host (index.html) document
     var currentDoc = document.currentScript.ownerDocument;
@@ -17,22 +17,41 @@
     //link.addEventListener('load', function(e) {
     var importedDoc = currentDoc.querySelector('link[rel="import"]').import;
 
+    element.graphOptions = {};
+
     // Fires when an instance of the element is created
     element.createdCallback = function() 
     {
         // Adding a Shadow DOM
-        var root = this.createShadowRoot();
+        var rootElement = this.createShadowRoot();
         
         // Adding a template
         var template = importedDoc.querySelector('#test1');
         var clone = document.importNode(template.content, true);
-        root.appendChild(clone);
+        rootElement.appendChild(clone);
+        
+        //add specific component values (not on prototype)
+        this.graphContainer = rootElement.querySelector('#graph');
+        
+
+        this.button1 = rootElement.querySelector('#button1');
+        this.button2 = rootElement.querySelector('#button2');  
+        var self = this;
+        
+        this.button1.addEventListener('click', function(){
+            element.clickButton1(self);
+        });
+        
+        this.button2.addEventListener('click', function(){
+            element.clickButton2(self);
+        });
+
         console.log('element created');
     };
 
     // Fires when an instance was inserted into the document
     element.attachedCallback = function() 
-    {
+    { 
         console.log('element attached');
     };
 
@@ -42,13 +61,38 @@
         console.log('element detached');
     };
 
+    element.clickButton1 = function(that) 
+    {
+        if (that.graphOptions.onButton1Clicked)
+            that.graphOptions.onButton1Clicked();
+        else
+            console.log('button1 was clicked but no callback is set');
+    };
+
+    element.clickButton2 = function(that) 
+    {
+        if (that.graphOptions.onButton2Clicked)
+            that.graphOptions.onButton2Clicked();
+        else
+            console.log('button2 was clicked but no callback is set');
+    };
+
     // Fires when an attribute was added, removed, or updated
     element.attributeChangedCallback = function(attr, oldVal, newVal) {};   
 
+    element.render = function(graphOptions)
+    {
+        this.graphOptions = graphOptions;
+        this.graphContainer.textContent = this.graphOptions.name;
+        console.log('rendered');
+    };
+    
     // Registers custom element
     document.registerElement('mo-wc-test1', {
         prototype: element
     });
+
+   
 }());
 </script>
 

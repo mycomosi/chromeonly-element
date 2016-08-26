@@ -2,12 +2,48 @@
 <html>
 <head>
 
-    <meta charset="utf-8">
-    <title>&lt;my-repo&gt;</title>
-	<link rel="import" href="./mo-wc-test1/mo-wc-test1.html">
+    <meta charset='utf-8'>
+    <title>MYCOMOSI Web Component test 1</title>
+	<link rel='import' href='./mo-wc-test1/mo-wc-test1.html'>
 
 </head>
 <body>
-    <mo-wc-test1></mo-wc-test1>
+    
+    <mo-wc-test1 id='wc1'></mo-wc-test1>
+    
+    <mo-wc-test1 id='wc2'></mo-wc-test1>
+    
+    <script type='text/javascript'>
+    	var wc = document.querySelector('#wc1');
+    	wc.render(
+    		{
+    			name : 'hello web component 1',
+    			onButton1Clicked : function(){
+    				alert('wc1 button 1 clicked');
+    			}
+    		});
+
+    	var wc2 = document.querySelector('#wc2');
+    	wc2.render(
+    		{
+    			name : 'hello web component 2',
+    			onButton1Clicked : function(){
+    				alert('wc2 button 1 clicked');
+    			}
+    		});
+
+
+    	setTimeout(function() 
+    		{
+    			wc.render(
+	    		{
+	    			name : 'hello web component 1 - updated',
+	    			onButton1Clicked : function(){
+	    				alert('wc1 button 1 clicked - updated');
+	    			}
+	    		});
+
+    		}, 5000);
+    </script>
 </body>
 </html>
