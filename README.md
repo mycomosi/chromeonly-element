@@ -4,10 +4,10 @@ The most simple form of web component only supported by chrome as we do not incl
 ##Description
 
 The idea was to test the very basic ways to interact with a web component by passing
-	- static information
-	- callback functions
+- static information
+- callback functions
 
-To do so I create a web component composed of two buttons and a text zone (see below). From the host html page I can then pass the following information.
+To do so I created a web component composed of two buttons and a text zone (see below). From the host html page I can then pass the following information.
  
 ```html
 <body>
