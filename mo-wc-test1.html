@@ -1,32 +1,49 @@
+<link rel="import" href="mo-wc-test1_template.html">
+
 <script>
 (function() {
+    
+    // currentDoc = mo-wc-test1.html document 
+    // document = index.html document
+    // importedDoc = mo-wc-test1_template.html document
+
+
     // Creates an object based in the HTML Element prototype
     var element = Object.create(HTMLElement.prototype);
 
+    //Retrieving the current document and not the host (index.html) document
+    var currentDoc = document.currentScript.ownerDocument;
+
+    //link.addEventListener('load', function(e) {
+    var importedDoc = currentDoc.querySelector('link[rel="import"]').import;
+
     // Fires when an instance of the element is created
-    element.createdCallback = function() {
+    element.createdCallback = function() 
+    {
         // Adding a Shadow DOM
         var root = this.createShadowRoot();
         
         // Adding a template
-        var template = document.querySelector('#test1');
+        var template = importedDoc.querySelector('#test1');
         var clone = document.importNode(template.content, true);
         root.appendChild(clone);
         console.log('element created');
     };
 
     // Fires when an instance was inserted into the document
-    element.attachedCallback = function() {
+    element.attachedCallback = function() 
+    {
         console.log('element attached');
     };
 
     // Fires when an instance was removed from the document
-    element.detachedCallback = function() {
+    element.detachedCallback = function() 
+    {
         console.log('element detached');
     };
 
     // Fires when an attribute was added, removed, or updated
-    element.attributeChangedCallback = function(attr, oldVal, newVal) {};
+    element.attributeChangedCallback = function(attr, oldVal, newVal) {};   
 
     // Registers custom element
     document.registerElement('mo-wc-test1', {
