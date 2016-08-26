@@ -3,12 +3,11 @@ The most simple form of web component only supported by chrome as we do not incl
 
 ##Description
 
-The idea was to test the very basic ways to interact with a web component
+The idea was to test the very basic ways to interact with a web component by passing
+	- static information
+	- callback functions
 
-- Create 2 instances of same web component
-- Pass "option" object to each instance containing
-	- static information to pass to render
-	- callback functions to be called on button click
+To do so I create a web component composed of two buttons and a text zone (see below). From the host html page I can then pass the following information.
  
 ```html
 <body>
@@ -25,6 +24,7 @@ The idea was to test the very basic ways to interact with a web component
     		});
     	//...
     </script>
+    <!-- ... -->
 </body>
 ```
 Will render like this
