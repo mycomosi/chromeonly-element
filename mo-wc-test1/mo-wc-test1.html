@@ -31,7 +31,7 @@
         rootElement.appendChild(clone);
         
         //add specific component values (not on prototype)
-        this.titleZone = rootElement.querySelector('#titleZone');
+        this.valueZone = rootElement.querySelector('#valueZone');
         
         this.registerButtonsCallbacks(rootElement);
 
@@ -70,16 +70,22 @@
 
     element.clickButton1 = function(that) 
     {
+        that.wcOptions.value = that.wcOptions.value * 2;
+        that.updateView();
+
         if (that.wcOptions.onButton1Clicked)
-            that.wcOptions.onButton1Clicked();
+            that.wcOptions.onButton1Clicked(that.wcOptions.value);
         else
             console.log('button1 was clicked but no callback is set');
     };
 
     element.clickButton2 = function(that) 
     {
+        that.wcOptions.value = that.wcOptions.value * 3;
+        that.updateView();
+
         if (that.wcOptions.onButton2Clicked)
-            that.wcOptions.onButton2Clicked();
+            that.wcOptions.onButton2Clicked(that.wcOptions.value);
         else
             console.log('button2 was clicked but no callback is set');
     };
@@ -90,8 +96,13 @@
     element.render = function(wcOptions)
     {
         this.wcOptions = wcOptions;
-        this.titleZone.textContent = this.wcOptions.name;
+        this.updateView();
         console.log('rendered');
+    };
+
+    element.updateView = function()
+    {
+        this.valueZone.textContent = this.wcOptions.value;
     };
     
 

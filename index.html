@@ -17,18 +17,18 @@
     	var wc = document.querySelector('#wc1');
     	wc.render(
     		{
-    			name : 'hello web component 1',
-    			onButton1Clicked : function(){
-    				alert('wc1 button 1 clicked');
+    			value : 4,
+    			onButton1Clicked : function(newValue){
+    				alert('x2 : new value is' + newValue);
     			}
     		});
 
     	var wc2 = document.querySelector('#wc2');
     	wc2.render(
     		{
-    			name : 'hello web component 2',
-    			onButton1Clicked : function(){
-    				alert('wc2 button 1 clicked');
+    			value : 3,
+    			onButton1Clicked : function(newValue){
+    				alert('x2 : new value is' + newValue);
     			}
     		});
 
@@ -37,13 +37,13 @@
     		{
     			wc.render(
 	    		{
-	    			name : 'hello web component 1 - updated',
-	    			onButton1Clicked : function(){
-	    				alert('wc1 button 1 clicked - updated');
+	    			value : 5,
+	    			onButton1Clicked : function(newValue){
+	    				alert('x2 : new value is (updated)' + newValue);
 	    			}
 	    		});
 
-    		}, 5000);
+    		}, 10000);
     </script>
 </body>
 </html>
